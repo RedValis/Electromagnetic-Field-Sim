@@ -293,7 +293,9 @@ function Proto2(){
 //   2 = +V conductor    (fixed φ = +P3V)
 //   3 = -V conductor    (fixed φ = -P3V)
 //   4 = floating metal  (SOR update, but normalised to equipotential per component)
-//
+//   This one took wayy too long and broke wayy too often
+
+//  Cry Counter (Increment at each tear per instance): 49  
 // After each SOR batch, p3NormalizeFloating does a BFS over every connected
 // component of mask=4 cells and sets them all to their average φ.
 // This converges to E=0 inside — the defining property of a conductor.
