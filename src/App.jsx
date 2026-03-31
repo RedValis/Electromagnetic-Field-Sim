@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 // SHARED
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 const TOOLBAR_H = 44;
 
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 // PROTO I — COULOMB FIELD VIEWER
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 const K = 0.8, EPS = 20;
 const HMAP_RES = 4, ARR_STEP = 52, EQ_RES = 8;
 const EQ_LEVELS = [-3,-2,-1.5,-1,-0.5,-0.2,0.2,0.5,1,1.5,2,3];
@@ -183,9 +183,9 @@ function Proto1(){
         <div className="si ml"><span className="sk">Coulomb · K</span><span className="sv" style={{color:'var(--faint)'}}>0.8</span></div></div></div></div>);
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 // PROTO II — POISSON GRID SOLVER
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 const NX=130,NY=82,ITERS_PER_FRAME=20,CHARGE_STRENGTH=4.0;
 function p2MakeGrid(){const phi=new Float32Array(NX*NY),rho=new Float32Array(NX*NY),fixed=new Uint8Array(NX*NY),painted=new Uint8Array(NX*NY);p2ResetBoundary({phi,rho,fixed,painted});return{phi,rho,fixed,painted};}
 function p2ResetBoundary(g){for(let i=0;i<NX;i++){const t=i,b=(NY-1)*NX+i;g.phi[t]=0;g.fixed[t]=1;g.painted[t]=0;g.phi[b]=0;g.fixed[b]=1;g.painted[b]=0;}for(let j=1;j<NY-1;j++){const l=j*NX,r=j*NX+NX-1;g.phi[l]=0;g.fixed[l]=1;g.painted[l]=0;g.phi[r]=0;g.fixed[r]=1;g.painted[r]=0;}}
@@ -283,9 +283,9 @@ function Proto2(){
         <div className="si ml"><span className="sk">Poisson · ∇²φ = −ρ/ε₀</span></div></div></div></div>);
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 // PROTO III — CONDUCTORS & ELECTROSTATIC INDUCTION
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 //
 // Cell mask values
 //   0 = free space      (normal SOR, rho sources allowed)
@@ -771,9 +771,9 @@ function Proto3(){
         <div className="si ml"><span className="sk">∇²φ = −ρ · E = −∇φ</span></div></div></div></div>);
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 // CSS
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -923,9 +923,9 @@ canvas{position:absolute;top:44px;left:0;right:0;bottom:0;width:100%;height:calc
 .p3-preset-btn:hover{border-color:#C4B5FD;color:#5B21B6;background:#F5F3FF;}
 `;
 
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 // APP SHELL
-// ═══════════════════════════════════════════════════════════════════════════════
+// -------------------------------------------------------------------------------
 export default function App() {
   const [tab, setTab] = useState('proto1');
   const labels = {
